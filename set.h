@@ -6,27 +6,10 @@
 // Effective std::set analogue based on AVL tree.
 template<class T>
 class Set {
+  private:
+    class Node;
+
   public:
-    class Node {
-      public:
-        Node() : value() {
-            left = right = nullptr;
-            next = prev = nullptr;
-            height = 0;
-        }
-
-        explicit Node(const T& elem) : value(elem) {
-            left = right = nullptr;
-            next = prev = nullptr;
-            height = 1;
-        }
-
-        T value;
-        Node *left = nullptr, *right = nullptr;
-        Node *next = nullptr, *prev = nullptr;
-        size_t height = 0;
-    };
-
     class iterator {
       public:
         iterator() : node_(nullptr) {}
@@ -182,6 +165,27 @@ class Set {
         del(root_);
         delete imaginary_;
     }
+
+  private:
+    class Node {
+      public:
+        Node() : value() {
+            left = right = nullptr;
+            next = prev = nullptr;
+            height = 0;
+        }
+
+        explicit Node(const T& elem) : value(elem) {
+            left = right = nullptr;
+            next = prev = nullptr;
+            height = 1;
+        }
+
+        T value;
+        Node *left = nullptr, *right = nullptr;
+        Node *next = nullptr, *prev = nullptr;
+        size_t height = 0;
+    };
 
   private:
     // Deletes a node v from the set.
